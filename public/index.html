@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal Tracer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="glass">
+    <h1>Signal Tracer</h1><a href="admin.html" class="lefttodo lefttodo-outline">Admin</a>
+</header>
+<main>
+ <section class="scroll-section"><h2>Trace a signal</h2>
+  <div class="row">
+   <label>Equipment tag<input id="eq" placeholder="e.g. K309" list="eqlist"></label>
+   <label>I/O number<input id="io" placeholder="e.g. I484.4"></label>
+   <button id="go">Show path</button><span id="status" class="msg"></span>
+  </div>
+  <datalist id="eqlist"></datalist>
+  <div class="scroll" id="diagram" style="margin-top:16px"></div>
+ </section>
+ <section class="scroll-section"><h2>All signals in a unit</h2>
+  <label>Unit<select id="unit"></select></label>
+  <div class="scroll"><table><thead><tr><th>I/O number</th><th>Panel</th><th>Equipment</th><th>Tag in equipment</th><th>Type</th><th>JBs</th></tr></thead><tbody id="rows"></tbody></table></div>
+  <p class="msg" id="empty"></p>
+ </section>
+</main><script src="viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment & secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+*.pem
+google-service-account.json
+**/google-service-account.json
+service-account*.json
+credentials*.json
+
+# Logs & temp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+tmp/
+temp/
+.DS_Store
+Thumbs.db
+
+# Build / Vercel
+.vercel
+dist/
+build/
+
+# Excel temp exports
+*.xlsx
+!public/**

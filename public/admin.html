@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal Tracer – Admin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="glass">
+  <h1>Signal Tracer –> Admin</h1><a class="lefttodo lefttodo-outline" href="index.html">Viewer</a>
+</header>
+<main>
+ <section id="login"><h2>Sign in</h2>
+  <div class="row"><label>Email<input id="email" type="email" autocomplete="username"></label>
+  <label>Password<input id="pw" type="password" autocomplete="current-password"></label>
+  <button id="signin">Sign in</button></div><p id="lmsg" class="msg err"></p></section>
+
+ <div id="app" hidden style="display:grid;gap:20px">
+  <section><h2 id="formtitle">Add a signal</h2>
+   <p class="msg">Saving an existing equipment tag + I/O number replaces its route. New units, equipment and junction boxes are created automatically. A junction box has one location, so changing it here updates it for every signal through that box; leave it blank to keep the existing one.</p>
+   <div class="grid">
+    <label>Unit<input id="unit" placeholder="Packing plant"></label>
+    <label>Equipment tag<input id="equipment_tag" placeholder="K309"></label>
+    <label>Equipment description<input id="equipment_desc"></label>
+    <label>Equipment / sensor location<input id="equipment_location" placeholder="Filler line 2, under silo, 1.5 m up"></label>
+    <label>Tag inside equipment<input id="equipment_terminal" placeholder="TB1-4"></label>
+    <label>I/O panel<input id="io_panel" placeholder="I/O Panel #8"></label>
+    <label>I/O number (PLCRef)<input id="io_number" placeholder="I484.4"></label>
+    <label>Signal code<input id="signal_code" placeholder="K309_NEW_PWR_ON"></label>
+    <label>Terminal group<input id="ter_grp" placeholder="eg XBO4"></label>
+    <label>Terminal no<input id="ter_no"></label>
+    <label>Signal type<select id="signal_type"><option>AI</option><option>AO</option><option>DI</option><option>DO</option></select></label>
+    <label>Signal description<input id="description"></label>
+   </div>
+   <h2 style="margin-top:18px">Route from I/O panel to field</h2>
+   <div id="hops"></div>
+   <div class="row"><button class="ghost" id="addhop">Add junction box</button><button id="save">Save signal</button><button class="ghost" id="cancel" hidden>Cancel edit</button><span id="smsg" class="msg"></span></div>
+  </section>
+  <section><h2>Excel and Google Sheet</h2>
+   <p class="msg"><!--The database is the master. Download rebuilds the workbook from it. The Google Sheet also updates itself after every save or delete.--></p>
+   <div class="row"><button id="export">Download Excel</button><button class="ghost" id="sheet">Sync Google Sheet now</button><span id="emsg" class="msg"></span></div>
+  </section>
+  <section class="scroll-section"><h2>Existing signals</h2>
+   <label>Filter<input id="filter" placeholder="Type equipment tag, I/O number, unit or JB…"></label>
+   <div class="scroll"><table><thead><tr><th>Unit</th><th>Equipment</th><th>I/O number</th><th>Tag in equipment</th><th>JBs</th><th>Last changed</th><th></th></tr></thead><tbody id="list"></tbody></table></div>
+   <p class="msg" id="lmsg2"></p>
+  </section>
+  <section class="scroll-section"><h2>Activity log</h2>
+   <div class="row"><label>Admin<input id="loguser" placeholder="email contains…"></label>
+    <label>Action<select id="logaction"><option value="">All</option><option>create</option><option>update</option><option>delete</option><option>import</option><option>export</option><option>sheet_sync</option><option>login</option></select></label>
+    <button class="ghost" id="logrefresh">Refresh</button></div>
+   <div class="scroll"><table><thead><tr><th>When</th><th>Admin</th><th>Action</th><th>Item</th><th>What changed</th></tr></thead><tbody id="log"></tbody></table></div>
+   <p class="msg" id="logmsg"></p></section>
+  
+ </div>
+</main><script src="admin.js"></script></body></html>
