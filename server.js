@@ -185,4 +185,11 @@ app.post('/api/admin/sheet-sync', requireAdmin, wrap(async (req, res) => {
   res.json(r);
 }));
 
-app.listen(process.env.PORT || 3000, () => console.log('Signal Tracer running on http://localhost:' + (process.env.PORT || 3000)));
+// Local development
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => console.log('Signal Tracer running on http://localhost:' + port));
+}
+
+// Vercel serverless
+module.exports = app;
